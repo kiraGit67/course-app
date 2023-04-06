@@ -28,7 +28,13 @@ export default {
 </script>
 
 <style scoped>
-/* @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"); */
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
+
+h1 {
+  text-align: center;
+  font-weight: 500;
+  color: #000066;
+}
 
 form {
   display: grid;
@@ -48,5 +54,11 @@ label {
   font-size: 0.85rem;
   color: #000099;
   font-weight: 500;
+}
+
+@media screen and (min-width: 1024px) {
+  form {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
 </style>
