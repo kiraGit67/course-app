@@ -4,6 +4,9 @@
     <article
       v-for="courseCategoriesItem of courseCategoriesList"
       :key="courseCategoriesItem.id"
+      :id="courseCategoriesItem.slug"
+      :data-visible-div="courseCategoriesItem.visible_div"
+      :data-hidden-divs="courseCategoriesItem.hidden_divs"
     >
       <i :class="courseCategoriesItem.icon"></i>
       <h4>{{ courseCategoriesItem.title }}</h4>
