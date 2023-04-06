@@ -5,6 +5,7 @@
       v-for="courseCategoriesItem of courseCategoriesList"
       :key="courseCategoriesItem.id"
     >
+      <i :class="courseCategoriesItem.icon"></i>
       <h4>{{ courseCategoriesItem.title }}</h4>
     </article>
   </div>
@@ -21,6 +22,8 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css");
+
 h1 {
   text-align: center;
   font-weight: 500;
@@ -37,9 +40,19 @@ article {
 }
 
 h4 {
-  color: #000099;
+  color: #000066;
   font-weight: 500;
   font-size: 1.1rem;
+}
+
+i {
+  font-size: 2.5rem;
+  color: #0000cc;
+}
+
+i:hover,
+h4:hover {
+  color: #dd6600;
 }
 
 @media screen and (min-width: 768px) {
