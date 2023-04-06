@@ -12,6 +12,7 @@
         :value="courseTypesItem.slug"
         :id="courseTypesItem.slug"
       />
+      <i :class="courseTypesItem.icon"></i>
       <label :for="courseTypesItem.slug"> {{ courseTypesItem.title }}</label>
     </div>
   </form>
@@ -28,7 +29,7 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css");
 
 h1 {
   text-align: center;
@@ -49,11 +50,25 @@ form {
   gap: 0.5rem;
 }
 
+input[type="radio"] {
+  accent-color: #dd6600;
+}
+
+i {
+  font-size: 2rem;
+  color: #0000cc;
+}
+
 label {
   text-align: center;
   font-size: 0.85rem;
-  color: #000099;
+  color: #000066;
   font-weight: 500;
+}
+
+i:hover,
+label:hover {
+  color: #dd6600;
 }
 
 @media screen and (min-width: 1024px) {
