@@ -2,14 +2,17 @@
   <h1>{{ headline }}</h1>
   <div class="cat-container">
     <article
-      v-for="courseCategoriesItem of courseCategoriesList"
-      :key="courseCategoriesItem.id"
-      :id="courseCategoriesItem.slug"
-      :data-visible-div="courseCategoriesItem.visible_div"
-      :data-hidden-divs="courseCategoriesItem.hidden_divs"
+      v-for="(
+        { id, title, slug, visible_div, hidden_divs, icon }, index
+      ) of courseCategoriesList"
+      :key="id"
+      :id="slug"
+      :data-visible-div="visible_div"
+      :data-hidden-divs="hidden_divs"
+      @click="handleShowSlug(index, slug), $emit('filter-by-category')"
     >
-      <i :class="courseCategoriesItem.icon"></i>
-      <h4>{{ courseCategoriesItem.title }}</h4>
+      <i :class="icon"></i>
+      <h4>{{ title }}</h4>
     </article>
   </div>
 </template>
@@ -20,6 +23,14 @@ export default {
   props: {
     headline: String,
     courseCategoriesList: Array,
+  },
+  methods: {
+    handleShowSlug(index, slug) {
+      console.log(index, slug);
+    },
+    emit() {
+      this.$emit("filter-by-category");
+    },
   },
 };
 </script>
