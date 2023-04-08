@@ -1,6 +1,6 @@
 <template>
   <h1>{{ headline }}</h1>
-  <div class="container">
+  <div class="cat-container">
     <article
       v-for="courseCategoriesItem of courseCategoriesList"
       :key="courseCategoriesItem.id"
@@ -33,7 +33,7 @@ h1 {
   color: #000066;
 }
 
-.container {
+.cat-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
@@ -59,7 +59,7 @@ h4:hover {
 }
 
 @media screen and (min-width: 768px) {
-  .container {
+  .cat-container {
     grid-template-columns: repeat(4, 1fr);
   }
 }
