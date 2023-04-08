@@ -1,6 +1,6 @@
 <template>
   <h1>{{ headline }}</h1>
-  <form>
+  <div class="radio-container">
     <div
       class="radio-wrapper"
       v-for="courseTypesItem of courseTypesList"
@@ -15,7 +15,7 @@
       <i :class="courseTypesItem.icon"></i>
       <label :for="courseTypesItem.slug"> {{ courseTypesItem.title }}</label>
     </div>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -37,7 +37,7 @@ h1 {
   color: #000066;
 }
 
-form {
+.radio-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
@@ -72,7 +72,7 @@ label:hover {
 }
 
 @media screen and (min-width: 1024px) {
-  form {
+  .radio-container {
     grid-template-columns: repeat(6, 1fr);
   }
 }
