@@ -3,17 +3,18 @@
   <div class="radio-container">
     <div
       class="radio-wrapper"
-      v-for="courseTypesItem of courseTypesList"
-      :key="courseTypesItem.id"
+      v-for="({ id, title, slug, icon }, index) of courseTypesList"
+      :key="id"
     >
       <input
         type="radio"
         name="course-type"
-        :value="courseTypesItem.slug"
-        :id="courseTypesItem.slug"
+        :value="slug"
+        :id="slug"
+        @input="showSlug(index, slug), $emit('filter-by-type')"
       />
-      <i :class="courseTypesItem.icon"></i>
-      <label :for="courseTypesItem.slug"> {{ courseTypesItem.title }}</label>
+      <i :class="icon"></i>
+      <label :for="slug"> {{ title }}</label>
     </div>
   </div>
 </template>
@@ -24,6 +25,14 @@ export default {
   props: {
     headline: String,
     courseTypesList: Array,
+  },
+  methods: {
+    showSlug(index, slug) {
+      console.log(index, slug);
+    },
+    emit() {
+      this.$emit("filter-by-type");
+    },
   },
 };
 </script>
