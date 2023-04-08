@@ -5,7 +5,7 @@ const routes = [
     path: "/",
     name: "home",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/HomeView.vue"),
+      import(/* webpackChunkName: "home" */ "../views/HomeView.vue"),
   },
   {
     path: "/about",
@@ -15,6 +15,12 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+  },
+  {
+    path: "/courses",
+    name: "courses",
+    component: () =>
+      import(/* webpackChunkName: "courses" */ "../views/CoursesView.vue"),
   },
 ];
 
