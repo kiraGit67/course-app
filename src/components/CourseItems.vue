@@ -7,8 +7,8 @@
         <h2>{{ course.title }}</h2>
         <p>{{ course.description }}</p>
         <p>
-          <strong>Kurs-Typ:</strong> {{ course.course_type }}<br />
-          <strong>Kategorie:</strong> {{ course.category }}<br />
+          <strong>Kurs-Typ:</strong> {{ course.type_props.label }}<br />
+          <strong>Kategorie:</strong> {{ course.cat_props.label }}<br />
           <strong>Anbieter:</strong> {{ course.vendor }}
         </p>
       </div>
@@ -31,6 +31,16 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  color: #000033;
+  font-weight: 500;
+}
+
+strong {
+  color: #000033;
+  font-weight: 500;
+}
+
 .course-list {
   display: grid;
   grid-template-columns: 1fr;
@@ -43,6 +53,7 @@ article {
   justify-content: space-between;
   padding: 0.35rem;
   border: 1px solid lightgrey;
+  box-shadow: 2px 2px 0 #efefef;
 }
 
 article .img-box {
@@ -83,6 +94,11 @@ article > .link-box > a {
   color: #000066;
   flex-grow: 1;
   text-align: center;
+}
+
+article > .link-box > a:hover {
+  color: #dd6600;
+  border-color: #dd6600;
 }
 
 @media screen and (min-width: 768px) {
