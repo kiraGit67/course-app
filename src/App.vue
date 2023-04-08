@@ -1,7 +1,7 @@
 <template>
   <nav>
-    <router-link :to="{ name: 'home' }">Home</router-link> |
-    <router-link :to="{ name: 'about' }">About</router-link> |
+    <router-link :to="{ name: 'home' }">Home</router-link>
+    <router-link :to="{ name: 'about' }">About</router-link>
     <router-link :to="{ name: 'courses' }">Kurs-Übersicht</router-link>
   </nav>
   <router-view />
@@ -13,7 +13,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
-  color: #2c3e50;
+  color: #000000;
   padding: 30px;
 }
 
@@ -22,11 +22,25 @@ nav {
 }
 
 nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #000099;
+  margin-right: 0.25rem;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+nav a::after {
+  content: " | ";
+  color: #000033;
+  margin-left: 0.25rem;
+}
+
+nav a:last-child::after {
+  content: "";
+}
+
+nav a.router-link-exact-active,
+nav a:hover {
+  color: #dd6600;
 }
 </style>
