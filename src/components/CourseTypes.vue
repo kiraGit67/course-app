@@ -11,7 +11,7 @@
         name="course-type"
         :value="slug"
         :id="slug"
-        @input="showSlug(index, slug), $emit('filter-by-type')"
+        @change="showSlug(index, slug), $emit('filter-by-type')"
       />
       <i :class="icon"></i>
       <label :for="slug"> {{ title }}</label>
