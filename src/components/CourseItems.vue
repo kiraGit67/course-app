@@ -15,6 +15,9 @@
       <div class="link-box">
         <a :href="course.product_url">Produkt-Seite</a>
         <a :href="course.order_url">Bestell-Seite</a>
+        <router-link :to="{ name: 'course-details', params: { id: course.id } }"
+          >Details</router-link
+        >
       </div>
     </article>
   </div>
@@ -35,6 +38,7 @@ h1 {
   color: #000033;
   font-weight: 500;
   text-align: center;
+  margin-top: 3rem;
 }
 
 strong {
@@ -82,9 +86,8 @@ img {
 }
 
 article > .link-box {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
 }
 
