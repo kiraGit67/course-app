@@ -22,7 +22,7 @@
         />
       </div>
     </div>
-    <div class="radio-container">
+    <div class="radio-container types-container">
       <div
         class="radio-wrapper"
         v-for="{ id, title, slug, icon } of courseTypes"
@@ -36,8 +36,31 @@
           v-model="typeSearch"
           @change="getSearchedCourses('type')"
         />
-        <i :class="icon"></i>
-        <label :for="slug"> {{ title }}</label>
+
+        <label :for="slug"
+          ><i :class="icon"></i><br />
+          {{ title }}</label
+        >
+      </div>
+    </div>
+    <div class="radio-container cat-container">
+      <div
+        class="radio-wrapper"
+        v-for="{ id, title, slug, icon } of courseCategories"
+        :key="id"
+      >
+        <input
+          type="radio"
+          name="category"
+          :value="slug"
+          :id="slug"
+          v-model="catSearch"
+          @change="getSearchedCourses('category')"
+        />
+        <label :for="slug"
+          ><i :class="icon"></i><br />
+          {{ title }}</label
+        >
       </div>
     </div>
   </form>
@@ -62,6 +85,7 @@ export default {
       searchTerm: "",
       vendorSearch: "",
       typeSearch: "",
+      catSearch: "",
     };
   },
   async created() {
@@ -97,6 +121,8 @@ export default {
         this.filterState = "?vendor_like=" + this.vendorSearch;
       } else if (searchParam === "type") {
         this.filterState = "?type_props.slug=" + this.typeSearch;
+      } else if (searchParam === "category") {
+        this.filterState = "?cat_props.slug=" + this.catSearch;
       } else {
         this.filterState = "?q=" + this.searchTerm;
       }
@@ -118,9 +144,20 @@ h1 {
 
 .radio-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 51, 0.15);
 }
+
+.radio-container.types-container {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.radio-container.cat-container {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .radio-wrapper {
   display: flex;
   flex-direction: column;
@@ -152,8 +189,7 @@ label:hover {
 
 .form-wrapper {
   display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-gap: 0.5rem;
+  grid-template-columns: 1fr;
   margin-bottom: 0.75rem;
 }
 
@@ -173,8 +209,24 @@ label:hover {
   outline: 2px solid rgba(255, 102, 0, 0.65);
 }
 
+@media screen and (min-width: 768px) {
+  .form-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .radio-container.types-container,
+  .radio-container.cat-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+}
+
 @media screen and (min-width: 1024px) {
-  .radio-container {
+  .radio-container.types-container {
     grid-template-columns: repeat(6, 1fr);
   }
 
