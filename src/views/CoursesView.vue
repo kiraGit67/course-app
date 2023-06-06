@@ -142,7 +142,8 @@ h1 {
   color: #000066;
 }
 
-.radio-container {
+.radio-container,
+.search-wrapper {
   display: grid;
   gap: 1rem;
   padding-bottom: 1rem;
