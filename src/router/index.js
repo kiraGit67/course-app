@@ -30,6 +30,14 @@ const routes = [
         /* webpackChunkName: "course-details" */ "../views/CourseDetailsView.vue"
       ),
   },
+  {
+    path: "/update/courses/:id",
+    name: "update-course",
+    component: () =>
+      import(
+        /* webpackChunkName: "update-course" */ "../views/CourseUpdateView.vue"
+      ),
+  },
 ];
 
 const router = createRouter({
