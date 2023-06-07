@@ -17,6 +17,10 @@
       <div class="course-links">
         <a :href="course.product_url" target="_blank">Produkt-Seite</a>
         <a :href="course.order_url" target="_blank">Bestellseite</a>
+        <router-link
+          :to="{ name: 'update-course', params: { id: this.$route.params.id } }"
+          >Kurs bearbeiten</router-link
+        >
       </div>
     </div>
   </div>
@@ -51,8 +55,13 @@ export default {
 <style scoped>
 h1,
 h2 {
-  color: #00c;
+  color: #006;
   font-weight: 500;
+  padding-bottom: 1rem;
+}
+
+h1 {
+  text-align: center;
 }
 
 .image-wrapper img {
