@@ -1,5 +1,5 @@
 <template>
-  <p>{{ this.$route.params }}</p>
+  <h2>Kurs Nr. {{ this.$route.params.id }} bearbeiten</h2>
   <form @submit.prevent="updateCourse()">
     <div class="form-row two-cols">
       <div class="input-wrapper">
@@ -187,6 +187,12 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+  text-align: center;
+  font-weight: 500;
+  padding-bottom: 1rem;
+}
+
 .input-wrapper {
   display: grid;
   grid-template-columns: 1fr;
