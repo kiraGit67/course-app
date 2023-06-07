@@ -13,10 +13,13 @@
         </p>
       </div>
       <div class="link-box">
-        <a :href="course.product_url">Produkt-Seite</a>
-        <a :href="course.order_url">Bestell-Seite</a>
+        <a :href="course.product_url" target="_blank">Produkt-Seite</a>
+        <a :href="course.order_url" target="_blank">Bestell-Seite</a>
         <router-link :to="{ name: 'course-details', params: { id: course.id } }"
           >Details</router-link
+        >
+        <router-link :to="{ name: 'update-course', params: { id: course.id } }"
+          >Kurs bearbeiten</router-link
         >
       </div>
     </article>
