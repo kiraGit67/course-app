@@ -19,6 +19,9 @@
 
 nav {
   padding: 30px 0;
+  margin-bottom: 30px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 102, 0.35);
 }
 
 nav a {
