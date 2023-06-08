@@ -119,12 +119,20 @@ export default {
     getSearchedCourses(searchParam) {
       if (searchParam === "vendor") {
         this.filterState = "?vendor_like=" + this.vendorSearch;
+        this.headline = "Übersicht über alle Kurse von " + this.vendorSearch;
       } else if (searchParam === "type") {
         this.filterState = "?type_props.slug=" + this.typeSearch;
+        this.headline =
+          "Übersicht über alle Kurse des Typs " + this.typeSearch.toUpperCase();
       } else if (searchParam === "category") {
         this.filterState = "?cat_props.slug=" + this.catSearch;
+        this.headline =
+          "Übersicht über alle Kurse der Kategorie " +
+          this.catSearch.toUpperCase();
       } else {
         this.filterState = "?q=" + this.searchTerm;
+        this.headline =
+          "Übersicht über alle Kurse mit dem Begriff " + this.searchTerm;
       }
 
       this.getCourses();
