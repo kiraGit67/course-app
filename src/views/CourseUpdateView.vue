@@ -1,5 +1,7 @@
 <template>
   <h2>Kurs Nr. {{ this.$route.params.id }} bearbeiten</h2>
+  <p class="error-message">{{ errorMessage }}</p>
+  <p class="success-message">{{ successMessage }}</p>
   <form @submit.prevent="updateCourse()">
     <div class="form-row two-cols">
       <div class="input-wrapper">
@@ -59,7 +61,11 @@
               {{ courseCategory.title }}
             </option>
           </select>
-          <select name="category" id="category" v-model="course.cat_props.slug">
+          <select
+            name="category-slug"
+            id="category-slug"
+            v-model="course.cat_props.slug"
+          >
             <option
               v-for="courseCategory in courseCategories"
               :key="courseCategory.id"
@@ -127,6 +133,14 @@ export default {
       course: {},
       courseCategories: [],
       courseTypes: [],
+      successMessage: "",
+      errorMessage: "",
+      errors: {
+        title: " Es muss ein Titel angegeben werden.",
+        vendor: " Es muss ein Anbieter angegeben werden.",
+        product: " Es muss ein Produkt-Link angegeben werden.",
+        order: " Es muss ein Bestell-Link angegeben werden.",
+      },
     };
   },
   created() {
@@ -172,15 +186,51 @@ export default {
       };
       console.log(updatedCourse);
 
-      fetch("http://localhost:3000/courses/" + this.$route.params.id, {
-        method: "PUT",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(updatedCourse),
-      })
-        .then((res) => res.json())
-        .then((updatedCourseFromApi) => {
-          this.course = updatedCourseFromApi;
-        });
+      if (
+        this.course.title !== "" &&
+        this.course.vendor !== "" &&
+        this.course.product_url !== "" &&
+        this.course.order_url !== ""
+      ) {
+        fetch("http://localhost:3000/courses/" + this.$route.params.id, {
+          method: "PUT",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(updatedCourse),
+        })
+          .then((res) => res.json())
+          .then((updatedCourseFromApi) => {
+            this.course = updatedCourseFromApi;
+          });
+
+        this.errorMessage = "";
+
+        this.successMessage =
+          "Der Kurs Nr. " +
+          this.$route.params.id +
+          " wurde erfolgreich bearbeitet.";
+      } else {
+        this.errorMessage =
+          "Es wurden nicht alle erforderlichen Felder ausgefüllt.";
+        if (this.course.title === "") {
+          this.errorMessage += this.errors.title;
+        }
+
+        if (this.course.vendor === "") {
+          this.errorMessage += this.errors.vendor;
+        }
+
+        if (this.course.product_url === "") {
+          this.errorMessage += this.errors.product;
+        }
+
+        if (this.course.order_url === "") {
+          this.errorMessage += this.errors.order;
+        }
+
+        this.successMessage = "";
+
+        return;
+      }
     },
   },
 };
@@ -191,6 +241,7 @@ h2 {
   text-align: center;
   font-weight: 500;
   padding-bottom: 1rem;
+  color: #003;
 }
 
 .input-wrapper {
@@ -240,6 +291,21 @@ button {
 button:hover {
   background-color: #f60;
   color: white;
+}
+
+.error-message,
+.success-message {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.error-message {
+  color: #ff3300;
+}
+
+.success-message {
+  color: #669900;
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
