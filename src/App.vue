@@ -3,6 +3,9 @@
     <router-link :to="{ name: 'home' }">Home</router-link>
     <router-link :to="{ name: 'about' }">About</router-link>
     <router-link :to="{ name: 'courses' }">Kurs-Übersicht</router-link>
+    <router-link :to="{ name: 'add-course' }"
+      >Neuen Kurs hinzufügen</router-link
+    >
   </nav>
   <router-view />
 </template>
