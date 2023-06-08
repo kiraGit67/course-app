@@ -23,6 +23,12 @@ const routes = [
       import(/* webpackChunkName: "courses" */ "../views/CoursesView.vue"),
   },
   {
+    path: "/courses/add",
+    name: "add-course",
+    component: () =>
+      import(/* webpackChunkName: "add-course" */ "../views/AddCourseView.vue"),
+  },
+  {
     path: "/courses/:id",
     name: "course-details",
     component: () =>
