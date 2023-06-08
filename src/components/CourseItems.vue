@@ -2,15 +2,17 @@
   <h1>{{ headline }}</h1>
   <div class="course-list">
     <article v-for="course of courseList" :key="course.id">
-      <div class="img-box"><img :src="course.img_source" alt="" /></div>
-      <div class="text-box">
-        <h2>{{ course.title }}</h2>
-        <p>{{ course.description }}</p>
-        <p>
-          <strong>Kurs-Typ:</strong> {{ course.type_props.label }}<br />
-          <strong>Kategorie:</strong> {{ course.cat_props.label }}<br />
-          <strong>Anbieter:</strong> {{ course.vendor }}
-        </p>
+      <div class="content-box">
+        <div class="img-box"><img :src="course.img_source" alt="" /></div>
+        <div class="text-box">
+          <h2>{{ course.title }}</h2>
+          <p>{{ course.description }}</p>
+          <p>
+            <strong>Kurs-Typ:</strong> {{ course.type_props.label }}<br />
+            <strong>Kategorie:</strong> {{ course.cat_props.label }}<br />
+            <strong>Anbieter:</strong> {{ course.vendor }}
+          </p>
+        </div>
       </div>
       <div class="link-box">
         <a :href="course.product_url" target="_blank">Produkt-Seite</a>
@@ -19,7 +21,7 @@
           >Details</router-link
         >
         <router-link :to="{ name: 'update-course', params: { id: course.id } }"
-          >Kurs bearbeiten</router-link
+          >Bearbeiten</router-link
         >
       </div>
     </article>
@@ -76,7 +78,7 @@ article .text-box {
   width: 100%;
 }
 
-article > .text-box > h2 {
+article > .content-box > .text-box > h2 {
   font-size: 1.1rem;
   font-weight: 500;
   color: #000066;
@@ -121,6 +123,12 @@ article > .link-box > a:hover {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .course-list {
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 </style>
